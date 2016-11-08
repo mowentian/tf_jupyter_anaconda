@@ -1,0 +1,28 @@
+version: '2'
+services:
+  jupyter:
+    image: tf_jupyter_anaconda
+    ports:
+      - "8888:8888"
+    volumes:
+      - "/tmp/tensorflow_logs"
+      - "/notebooks:/notebooks"
+    command:
+      - "/opt/conda/bin/jupyter"
+      - "notebook"
+      - "--notebook-dir=/notebooks"
+      - "--ip='*'"
+      - "--port=8888"
+      - "--no-browser"
+  tensorboard:
+    image: tf_jupyter_anaconda
+    ports:
+      - "6006:6006"
+    volumes_from:
+      - jupyter
+    command:
+      - "tensorboard"
+      - "--logdir"
+      - "/tmp/tensorflow_logs"
+      - "--host"
+      - "0.0.0.0"
