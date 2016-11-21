@@ -6,7 +6,7 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - "/tmp/tensorflow_logs"
+      - "/tmp/Signal_DL_Enhance"
       - "/notebooks:/notebooks"
     command:
       - "/opt/conda/bin/jupyter"
